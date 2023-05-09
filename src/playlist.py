@@ -43,9 +43,10 @@ class PlayList:
                                                          part='contentDetails',
                                                          maxResults=50,
                                                          ).execute()
-        for playlist in plist_videos["items"]:
+        for video in plist_videos["items"]:
+
             video_response = self.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
-                                                        id=playlist["contentDetails"]["videoId"]
+                                                        id=video["contentDetails"]["videoId"]
                                                         ).execute()
 
             if best_video["like_count"] < int(video_response["items"][0]["statistics"]["likeCount"]):
